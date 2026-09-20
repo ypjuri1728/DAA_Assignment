@@ -1,0 +1,31 @@
+class Solution {
+    public int search(int[] arr, int target) {
+        int left =0;
+        int right = arr.length -1;
+        while(left<=right){
+        int mid = left+(right-left)/2;
+        if(arr[mid] == target){
+            return mid;
+        }
+        //if exists so we have that info to delete num in right side 
+        if(arr[left] <= arr[mid]){
+            if(arr[left]<= target && target <= arr[mid]){
+                right = mid-1; //true so 
+            }
+            else{
+                left = mid+1;
+            }
+        }
+        //no left var consider so we only this op to check rigth side
+        else{
+            if(arr[mid]< target && target <= arr[right]){
+                left = mid+1;
+            }
+            else{
+                right = mid-1;
+            }
+        }
+        }
+        return -1; // no exists value 
+    }
+}
